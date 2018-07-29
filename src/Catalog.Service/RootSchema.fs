@@ -31,6 +31,20 @@ module Schema =
                                 fun ctx _ -> async {
                                     return brands
                                 })
+                    Define.AsyncField(
+                                "productBrand",
+                                 ProductBrandType,
+                                "Gets product brand by id",
+                                [
+                                    Define.Input("id", String)
+                                ],
+                                fun ctx _ -> async {
+                                    let id = ctx.Arg("id").ToString() |> System.Guid
+
+                                    let brand = brands |> Seq.filter (fun t -> t.Id = id) |> Seq.head
+
+                                    return brand
+                                })           
                 ])
 
     let executor = Schema(query = Query) :> ISchema<Root> |> Executor

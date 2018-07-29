@@ -1,25 +1,23 @@
-namespace Catalog.Service
+namespace Catalog.API
 
 open System
-open System.Collections.Generic
-open System.IO
-open System.Linq
-open System.Threading.Tasks
 open Microsoft.AspNetCore
 open Microsoft.AspNetCore.Hosting
-open Microsoft.Extensions.Configuration
-open Microsoft.Extensions.Logging
 
 module Program =
+
     let exitCode = 0
 
-    let CreateWebHostBuilder args =
+    let BuildWebHost args =
         WebHost
             .CreateDefaultBuilder(args)
-            .UseStartup<Startup>();
+            .UseStartup<Startup>()
+            .UseUrls("http://localhost:8705")
+            .Build()
 
     [<EntryPoint>]
     let main args =
-        CreateWebHostBuilder(args).Build().Run()
-
+        Console.Title <- "Catalog Service"
+        
+        BuildWebHost(args).Run()
         exitCode

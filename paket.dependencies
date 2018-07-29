@@ -2,3 +2,4 @@ source https://www.nuget.org/api/v2
 nuget Fsharp.Core
 nuget FSharp.Data.GraphQL.Server.Middlewares
 nuget Giraffe
+nuget System.Reactive.Linq

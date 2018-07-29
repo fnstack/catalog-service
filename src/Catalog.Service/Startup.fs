@@ -1,15 +1,14 @@
-namespace Catalog.Service
+namespace Catalog.API
 
 open System
-open System.Collections.Generic
-open System.Linq
-open System.Threading.Tasks
 open Microsoft.AspNetCore.Builder
 open Microsoft.AspNetCore.Hosting
-open Microsoft.AspNetCore.HttpsPolicy;
 open Microsoft.AspNetCore.Mvc
 open Microsoft.Extensions.Configuration
 open Microsoft.Extensions.DependencyInjection
+open Giraffe
+open Microsoft.Extensions.Logging
+open FSharp.Data.GraphQL
 
 type Startup private () =
     new (configuration: IConfiguration) as this =
@@ -19,6 +18,9 @@ type Startup private () =
     // This method gets called by the runtime. Use this method to add services to the container.
     member this.ConfigureServices(services: IServiceCollection) =
         // Add framework services.
+        
+        services.AddGiraffe() |> ignore
+        //services.AddSingleton<Executor<Root>>(Schema.executor) |> ignore
         services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1) |> ignore
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -28,7 +30,12 @@ type Startup private () =
         else
             app.UseHsts() |> ignore
 
-        app.UseHttpsRedirection() |> ignore
-        app.UseMvc() |> ignore
+        let errorHandler (ex : Exception) (log : ILogger) =
+            log.LogError(EventId(), ex, "An unhandled exception has occurred while executing the request.")
+            clearResponse >=> setStatusCode 500
+            
+        app
+            .UseGiraffeErrorHandler(errorHandler)
+            .UseGiraffe HttpHandlers.webApp
 
     member val Configuration : IConfiguration = null with get, set

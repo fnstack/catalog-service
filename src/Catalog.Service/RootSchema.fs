@@ -33,7 +33,7 @@ module Schema =
                                 })
                     Define.AsyncField(
                                 "productBrand",
-                                 ProductBrandType,
+                                ProductBrandType,
                                 "Gets product brand by id",
                                 [
                                     Define.Input("id", String)

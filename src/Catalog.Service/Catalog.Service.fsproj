@@ -6,6 +6,7 @@
   <ItemGroup>
     <Compile Include="Helpers.fs" />
     <Compile Include="ProductBrandSchema.fs" />
+    <Compile Include="ProductCategorySchema.fs" />
     <Compile Include="RootSchema.fs" />
     <Compile Include="HttpHandlers.fs" />
     <Compile Include="Startup.fs" />

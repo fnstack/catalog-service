@@ -15,10 +15,10 @@ module Schema =
                    {Id = "cc6b592e-b344-4daa-85d9-85ff501dc59c" |> System.Guid; Name = "Nokia"; Description = ""}
                    {Id = "c79fdfc5-cfa8-43ac-8617-9df4b94c4cd1" |> System.Guid; Name = "Samsung"; Description = ""}
                  ]
-    let categories = [
-                   {Id = "681f3f83-2580-4c54-ac0a-f18dd1b0d73b" |> System.Guid; Name = "Music";ParentId="681f3f83-2580-4c54-ac0a-f18dd1b0d73a"|> System.Guid; Description = ""}
-                   {Id = "cc6b592e-b344-4daa-85d9-85ff501dc59c" |> System.Guid; Name = "Sport";ParentId="681f3f83-2580-4c54-ac0a-f18dd1b0d73a"|> System.Guid; Description = ""}
-                   {Id = "c79fdfc5-cfa8-43ac-8617-9df4b94c4cd1" |> System.Guid; Name = "MultiMedia";ParentId="681f3f83-2580-4c54-ac0a-f18dd1b0d73a"|> System.Guid; Description = ""}
+    let mutable categories = [
+                   {Id = "681f3f83-2580-4c54-ac0a-f18dd1b0d73b" |> System.Guid; Name = "Music";ParentId="681f3f83-2580-4c54-ac0a-f18dd1b0d73a"; Description = ""}
+                   {Id = "cc6b592e-b344-4daa-85d9-85ff501dc59c" |> System.Guid; Name = "Sport";ParentId="681f3f83-2580-4c54-ac0a-f18dd1b0d73a"; Description = ""}
+                   {Id = "c79fdfc5-cfa8-43ac-8617-9df4b94c4cd1" |> System.Guid; Name = "MultiMedia";ParentId="681f3f83-2580-4c54-ac0a-f18dd1b0d73a"; Description = ""}
                  ]
 
     let Query =
@@ -96,6 +96,25 @@ module Schema =
                                     brands <- brands |> List.append [{Id = id; Name = input.Name; Description = ""}]
                                 | true ->
                                     failwith (sprintf "A product brand with name %s already exists" input.Name)
+
+                                return id
+                              })
+
+                Define.AsyncField(
+                            "createProductCategory",
+                            ID,
+                            "Create a new product category",
+                            [ Define.Input("input", CreateProductCategoryInput) ],
+                            fun ctx _ -> async {
+                                let input = ctx.Arg<CreateProductCategoryInput>("input")
+
+                                let id = System.Guid.NewGuid()
+
+                                match categories |> List.exists (fun category -> category.Name.ToLower() = input.Name.ToLower()) with
+                                | false ->
+                                    categories <- categories |> List.append [{Id = id; Name = input.Name; Description = input.Description; ParentId = input.ParentId}]
+                                | true ->
+                                    failwith (sprintf "A product category with name %s already exists" input.Name)
 
                                 return id
                               })

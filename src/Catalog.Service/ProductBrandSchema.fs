@@ -2,13 +2,16 @@ module Catalog.API.ProductBrandSchema
 
 open FSharp.Data.GraphQL.Types
 
-type ProductBrandDto = {Id: System.Guid; Name: string; Description: string}
-
+// INPUTS
 type CreateProductBrandInput = { Name: string }
 
 let CreateProductBrandInput =
         Define.InputObject<CreateProductBrandInput>("CreateProductBrandInput",
             [ Define.Input("name", String) ])
+
+
+// TYPES
+type ProductBrandDto = {Id: System.Guid; Name: string; Description: string}
 
 let rec ProductBrandType =
     Define.Object<ProductBrandDto>(

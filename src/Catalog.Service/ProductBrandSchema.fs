@@ -4,11 +4,10 @@ open FSharp.Data.GraphQL.Types
 
 type ProductBrandDto = {Id: System.Guid; Name: string; Description: string}
 
-type CreateProductBrandDto = { Name: string }
-
+type CreateProductBrandInput = { Name: string }
 
 let CreateProductBrandInput =
-        Define.InputObject<CreateProductBrandDto>("CreateProductBrandInput",
+        Define.InputObject<CreateProductBrandInput>("CreateProductBrandInput",
             [ Define.Input("name", String) ])
 
 let rec ProductBrandType =

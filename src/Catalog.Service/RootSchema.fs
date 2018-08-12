@@ -87,7 +87,7 @@ module Schema =
                             "Create a new product brand",
                             [ Define.Input("input", CreateProductBrandInput) ],
                             fun ctx _ -> async {
-                                let input = ctx.Arg<CreateProductBrandDto>("input")
+                                let input = ctx.Arg<CreateProductBrandInput>("input")
 
                                 let id = System.Guid.NewGuid()
 

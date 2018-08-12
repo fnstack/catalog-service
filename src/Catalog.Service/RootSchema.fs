@@ -110,13 +110,9 @@ module Schema =
 
                                 let id = System.Guid.NewGuid()
 
-                                let checkDescription = fun value -> match value |> System.String.IsNullOrWhiteSpace with true -> None | false -> value |> Some
-
-
-
                                 match categories |> List.exists (fun category -> category.Name.ToLower() = input.Name.ToLower()) with
                                 | false ->
-                                    categories <- categories |> List.append [{Id = id; Name = input.Name; Description = input.Description |> checkDescription; ParentId = input.ParentId |> checkDescription }]
+                                    categories <- categories |> List.append [{Id = id; Name = input.Name; Description = input.Description; ParentId = input.ParentId }]
                                 | true ->
                                     failwith (sprintf "A product category with name %s already exists" input.Name)
 

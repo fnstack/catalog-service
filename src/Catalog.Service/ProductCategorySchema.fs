@@ -3,7 +3,7 @@ module Catalog.API.ProductCategorySchema
 open FSharp.Data.GraphQL.Types
 
 // INPUTS
-type CreateProductCategoryInput = { Name: string; ParentId: string; Description: string }
+type CreateProductCategoryInput = { Name: string; ParentId: string option; Description: string option}
 
 let CreateProductCategoryInput =
         Define.InputObject<CreateProductCategoryInput>("CreateProductCategoryInput",

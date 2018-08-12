@@ -11,14 +11,14 @@ type Root =
 module Schema =
 
     let mutable brands = [
-                   {Id = "681f3f83-2580-4c54-ac0a-f18dd1b0d73a" |> System.Guid; Name = "Apple"}
-                   {Id = "cc6b592e-b344-4daa-85d9-85ff501dc59c" |> System.Guid; Name = "Nokia"} 
-                   {Id = "c79fdfc5-cfa8-43ac-8617-9df4b94c4cd1" |> System.Guid; Name = "Samsung"}
+                   {Id = "681f3f83-2580-4c54-ac0a-f18dd1b0d73a" |> System.Guid; Name = "Apple"; Description = "Un des leader GAFA"}
+                   {Id = "cc6b592e-b344-4daa-85d9-85ff501dc59c" |> System.Guid; Name = "Nokia"; Description = ""}
+                   {Id = "c79fdfc5-cfa8-43ac-8617-9df4b94c4cd1" |> System.Guid; Name = "Samsung"; Description = ""}
                  ]
     let categories = [
-                   {Id = "681f3f83-2580-4c54-ac0a-f18dd1b0d73b" |> System.Guid; Name = "Music";ParentId="681f3f83-2580-4c54-ac0a-f18dd1b0d73a"|> System.Guid;}
-                   {Id = "cc6b592e-b344-4daa-85d9-85ff501dc59c" |> System.Guid; Name = "Sport";ParentId="681f3f83-2580-4c54-ac0a-f18dd1b0d73a"|> System.Guid;} 
-                   {Id = "c79fdfc5-cfa8-43ac-8617-9df4b94c4cd1" |> System.Guid; Name = "MultiMedia";ParentId="681f3f83-2580-4c54-ac0a-f18dd1b0d73a"|> System.Guid;}
+                   {Id = "681f3f83-2580-4c54-ac0a-f18dd1b0d73b" |> System.Guid; Name = "Music";ParentId="681f3f83-2580-4c54-ac0a-f18dd1b0d73a"|> System.Guid; Description = ""}
+                   {Id = "cc6b592e-b344-4daa-85d9-85ff501dc59c" |> System.Guid; Name = "Sport";ParentId="681f3f83-2580-4c54-ac0a-f18dd1b0d73a"|> System.Guid; Description = ""}
+                   {Id = "c79fdfc5-cfa8-43ac-8617-9df4b94c4cd1" |> System.Guid; Name = "MultiMedia";ParentId="681f3f83-2580-4c54-ac0a-f18dd1b0d73a"|> System.Guid; Description = ""}
                  ]
 
     let Query =
@@ -48,7 +48,7 @@ module Schema =
                                     let brand = brands |> Seq.filter (fun t -> t.Id = id) |> Seq.head
 
                                     return brand
-                                })           
+                                })
                     Define.AsyncField(
                                 "productCategory",
                                 ProductCategoryType,
@@ -59,7 +59,7 @@ module Schema =
                                 fun ctx _ -> async {
                                     let id = ctx.Arg("id").ToString() |> System.Guid
 
-                                    let category = categories |> Seq.filter (fun t -> t.Id = id) |> Seq.head 
+                                    let category = categories |> Seq.filter (fun t -> t.Id = id) |> Seq.head
 
                                     return category
                                 })
@@ -93,10 +93,10 @@ module Schema =
 
                                 match brands |> List.exists (fun brand -> brand.Name.ToLower() = input.Name.ToLower()) with
                                 | false ->
-                                    brands <- brands |> List.append [{Id = id; Name = input.Name}]
-                                | true -> 
-                                    failwith (sprintf "A product brand with name %s alrady exists" input.Name)
-                                
+                                    brands <- brands |> List.append [{Id = id; Name = input.Name; Description = ""}]
+                                | true ->
+                                    failwith (sprintf "A product brand with name %s already exists" input.Name)
+
                                 return id
                               })
             ])

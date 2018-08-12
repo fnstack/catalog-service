@@ -149,6 +149,25 @@ module Schema =
 
                                 return id
                               })
+
+                Define.AsyncField(
+                            "createProduct",
+                            ID,
+                            "Create a new product",
+                            [ Define.Input("input", CreateProductInput) ],
+                            fun ctx _ -> async {
+                                let input = ctx.Arg<CreateProductInput>("input")
+
+                                let id = System.Guid.NewGuid()
+
+                                match products |> List.exists (fun brand -> brand.Name.ToLower() = input.Name.ToLower()) with
+                                | false ->
+                                    products <- products |> List.append [{Id = id; Name = input.Name; BrandId = input.BrandId; CategoryId = input.CategoryId;  Description = input.Description}]
+                                | true ->
+                                    failwith (sprintf "A product with name %s already exists" input.Name)
+
+                                return id
+                              })
             ])
 
     let executor = Schema(query = Query, mutation = Mutation) :> ISchema<Root> |> Executor

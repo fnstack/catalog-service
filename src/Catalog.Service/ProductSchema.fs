@@ -2,6 +2,17 @@
 
 open FSharp.Data.GraphQL.Types
 
+// INPUTS
+type CreateProductInput = { Name: string; BrandId: string;  CategoryId: string; Description: string option}
+
+let CreateProductInput =
+        Define.InputObject<CreateProductInput>("CreateProductInput",
+            [ Define.Input("name", String)
+              Define.Input("brandId", ID<System.String>)
+              Define.Input("categoryId", ID<System.String>)
+              Define.Input("description", Nullable String)
+            ])
+
 // TYPES
 type ProductType = {Id: System.Guid; Name: string; BrandId: string; CategoryId: string; Description: string option}
 

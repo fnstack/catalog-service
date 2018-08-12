@@ -8,7 +8,7 @@ type CreateProductCategoryInput = { Name: string; ParentId: string option; Descr
 let CreateProductCategoryInput =
         Define.InputObject<CreateProductCategoryInput>("CreateProductCategoryInput",
             [ Define.Input("name", String)
-              Define.Input("parentId", ID<System.String>)
+              Define.Input("parentId", Nullable ID<System.String>)
               Define.Input("description", Nullable String)
             ])
 

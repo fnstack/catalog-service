@@ -13,7 +13,7 @@ let CreateProductCategoryInput =
             ])
 
 // TYPES
-type ProductCategoryDto = {Id: System.Guid; Name: string; ParentId: string; Description: string option}
+type ProductCategoryDto = {Id: System.Guid; Name: string; ParentId: string option; Description: string option}
 
 let rec ProductCategoryType =
         Define.Object<ProductCategoryDto>(
@@ -24,7 +24,7 @@ let rec ProductCategoryType =
             [
                 Define.Field("id", ID<System.Guid>, "The id of the product Category.", fun _ dto -> dto.Id)
                 Define.Field("name", String, "The name of the product Category.", fun _ dto -> dto.Name)
-                Define.Field("parentid", ID<System.String>, "The Parentid of the product Category.", fun _ dto -> dto.ParentId)
+                Define.Field("parentid", Nullable String, "The Parentid of the product Category.", fun _ dto -> dto.ParentId)
                 Define.Field("description", Nullable String, "The description of the product Category.", fun _ dto -> dto.Description)
             ])
 

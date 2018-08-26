@@ -10,24 +10,6 @@ type Root =
     { ClientId: System.Guid }
 
 module Schema =
-
-    let mutable brands = [
-                   {Id = "681f3f83-2580-4c54-ac0a-f18dd1b0d73a" |> System.Guid; Name = "Apple"; Description = "Un des leader GAFA"}
-                   {Id = "cc6b592e-b344-4daa-85d9-85ff501dc59c" |> System.Guid; Name = "Nokia"; Description = ""}
-                   {Id = "c79fdfc5-cfa8-43ac-8617-9df4b94c4cd1" |> System.Guid; Name = "Samsung"; Description = ""}
-                 ]
-    let mutable categories = [
-                   {Id = "681f3f83-2580-4c54-ac0a-f18dd1b0d73b" |> System.Guid; Name = "Music";ParentId = None; Description = None}
-                   {Id = "cc6b592e-b344-4daa-85d9-85ff501dc59c" |> System.Guid; Name = "Sport";ParentId = None; Description = None}
-                   {Id = "c79fdfc5-cfa8-43ac-8617-9df4b94c4cd1" |> System.Guid; Name = "MultiMedia";ParentId = None; Description = None}
-                 ]
-
-    let mutable products = [
-                   {Id = "fc8c04ab-8678-4b3a-84cf-c04a319527f7" |> System.Guid; Name = "Music"; BrandId = "681f3f83-2580-4c54-ac0a-f18dd1b0d73a"; CategoryId = "681f3f83-2580-4c54-ac0a-f18dd1b0d73b"; Description = None}
-                   {Id = "cc6b592e-b344-4daa-85d9-85ff501dc59c" |> System.Guid; Name = "Sport"; BrandId =  "c79fdfc5-cfa8-43ac-8617-9df4b94c4cd1"; CategoryId = "cc6b592e-b344-4daa-85d9-85ff501dc59c";Description = None}
-                   {Id = "c79fdfc5-cfa8-43ac-8617-9df4b94c4cd1" |> System.Guid; Name = "MultiMedia"; BrandId = "cc6b592e-b344-4daa-85d9-85ff501dc59c"; CategoryId = "c79fdfc5-cfa8-43ac-8617-9df4b94c4cd1";Description = None}
-                 ]
-
     let Query =
             Define.Object<Root>(
                 name = "Query",

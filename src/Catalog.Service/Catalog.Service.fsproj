@@ -17,5 +17,9 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Catalog.Application\Catalog.Application.fsproj" />
+    <ProjectReference Include="..\Catalog.DependencyResolution\Catalog.DependencyResolution.fsproj" />
+  </ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>

@@ -24,3 +24,9 @@ let rec ProductBrandType =
                 Define.Field("name", String, "The name of the product brand.", fun _ dto -> dto.Name)
                 Define.Field("description", String, "The description of the product brand.", fun _ dto -> dto.Description)
             ])
+
+let mutable brands = [
+                   {Id = "681f3f83-2580-4c54-ac0a-f18dd1b0d73a" |> System.Guid; Name = "Apple"; Description = "Un des leader GAFA"}
+                   {Id = "cc6b592e-b344-4daa-85d9-85ff501dc59c" |> System.Guid; Name = "Nokia"; Description = ""}
+                   {Id = "c79fdfc5-cfa8-43ac-8617-9df4b94c4cd1" |> System.Guid; Name = "Samsung"; Description = ""}
+                 ]

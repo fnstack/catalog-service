@@ -3,11 +3,12 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
+  <Import Project="..\..\.paket\Paket.Restore.targets" />
   <ItemGroup>
     <None Include="paket.references" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Catalog.Application\Catalog.Application.fsproj" />
     <ProjectReference Include="..\Catalog.Domain\Catalog.Domain.fsproj" />
   </ItemGroup>
-  <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>

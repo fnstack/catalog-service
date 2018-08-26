@@ -6,6 +6,7 @@ open Microsoft.AspNetCore.Http
 open System.IO
 open FSharp.Data.GraphQL
 open FSharp.Data.GraphQL.Execution
+open FSharp.Control.Tasks.V2.ContextSensitive
 open Newtonsoft.Json.Linq
 
 let private okWithStr str : HttpHandler = (text str) |> Successful.ok

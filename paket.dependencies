@@ -1,11 +1,14 @@
-source https://www.nuget.org/api/v2
+framework: auto-detect
+
+source https://api.nuget.org/v3/index.json
+
 nuget Fsharp.Core
 nuget FSharp.Data.GraphQL.Server.Middlewares
 nuget Giraffe
 nuget System.Reactive.Linq
 
 group Tests
-source https://nuget.org/api/v2
+source https://api.nuget.org/v3/index.json
 
 nuget Expecto.FsCheck
 nuget Expecto.Hopac

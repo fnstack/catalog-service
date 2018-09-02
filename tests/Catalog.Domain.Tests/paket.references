@@ -1,7 +1,7 @@
-Fsharp.Core
-System.ValueTuple
 group Tests
 Expecto.BenchmarkDotNet
 YoloDev.Expecto.TestSdk
 Expecto.Hopac
 Expecto.FsCheck
+Fsharp.Core
+System.ValueTuple

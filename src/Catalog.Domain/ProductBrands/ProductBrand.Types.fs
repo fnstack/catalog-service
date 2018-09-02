@@ -9,3 +9,6 @@ module ProductBrandId =
                         | true -> "Product brand id can not be empty" |> Error
                         | false -> value |> ProductBrandId |> Ok
 
+    let getValue (ProductBrandId value) = value
+
+    let Empty = Guid.Empty |> ProductBrandId

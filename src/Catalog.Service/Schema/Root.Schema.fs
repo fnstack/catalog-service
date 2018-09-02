@@ -106,7 +106,7 @@ module Schema =
 
                                 match brands |> List.exists (fun brand -> brand.Name.ToLower() = input.Name.ToLower()) with
                                 | false ->
-                                    brands <- brands |> List.append [{Id = id; Name = input.Name; Description = ""}]
+                                    brands <- brands |> List.append [{Id = id; Name = input.Name; Description = None}]
                                 | true ->
                                     failwith (sprintf "A product brand with name %s already exists" input.Name)
 

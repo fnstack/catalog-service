@@ -10,6 +10,7 @@ nuget System.Reactive.Linq
 group Tests
 source https://api.nuget.org/v3/index.json
 
+nuget Cvdm.ErrorHandling
 nuget Expecto.FsCheck
 nuget Expecto.Hopac
 nuget YoloDev.Expecto.TestSdk

@@ -5,3 +5,4 @@ Expecto.Hopac
 Expecto.FsCheck
 Fsharp.Core
 System.ValueTuple
+Cvdm.ErrorHandling

@@ -3,3 +3,11 @@ nuget Fsharp.Core
 nuget FSharp.Data.GraphQL.Server.Middlewares
 nuget Giraffe
 nuget System.Reactive.Linq
+
+group Tests
+source https://nuget.org/api/v2
+
+nuget Expecto.FsCheck
+nuget Expecto.Hopac
+nuget YoloDev.Expecto.TestSdk
+nuget Expecto.BenchmarkDotNet

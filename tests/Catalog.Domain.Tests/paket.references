@@ -1,0 +1,6 @@
+Fsharp.Core
+System.ValueTuple
+Expecto.FsCheck
+Expecto.Hopac
+Expecto.BenchmarkDotNet
+YoloDev.Expecto.TestSdk

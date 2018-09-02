@@ -1,8 +1,9 @@
-﻿// Learn more about F# at http://fsharp.org
-
-open System
+﻿open Expecto
 
 [<EntryPoint>]
-let main argv =
-    printfn "Hello World from F#!"
-    0 // return an integer exit code
+let main args =
+  Tests.runTestsInAssembly defaultConfig args |> ignore
+
+  System.Console.ReadKey() |> ignore
+
+  0
